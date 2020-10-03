@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+
+  <body>
+  	<div class="container">
+  	<h1>Coronavirus Tracker</h1>
+    <p>This application lists the current total of cases reported.</p>
+    
+    <div class="jumbotron">
+	  <h1 class="text-warning display-4" th:text="${totalReportedCases}"> Total cases reported as today</h1>
+	 
+	  <hr class="my-4">
+	  <p>
+	  	<span display-4>Total cases reported as today (US) </span>
+	  	<span class="text-danger" th:text="${totalReportedUsCases}"></span>
+	  </p>
+	  <p>
+	  	<span display-4>Total US Death cases reported as today </span>
+	  	<span class="text-danger" th:text="${totalUsDeath}"></span>
+	  </p>
+	   <p>
+	  	<span>Total WI cases reported as today (US) </span>
+	  	<span  class="text-danger" th:text="${totalWiCases}"></span>
+	  </p>
+	  
+	  <p>
+	  	<span>New Case reported since previous day </span>
+	  	<span class="text-danger" th:text="${totalNewCases}"></span>
+	  </p>
+	   
+	</div>
+	
+		 <p>WI confirmed case today</p>
+	    <table class="table bg-white">
+	      <tr>
+	        <th>Country</th>
+	        <th>State</th>
+	        <th>Key</th>
+	        <th class="text-lg-right">Total Cases</th>
+	       <!--  <th class="text-lg-right">Total 1 day Before</th>
+	        <th class="text-lg-right">Total 2 day Before</th>
+	        <th class="text-lg-right">Total 3 day Before</th> -->
+	        <th class="text-lg-right">Total Death</th>
+	        <th class="text-lg-right">Increase Today</th>
+	        <th class="text-lg-right">Increase Day Before</th>
+	        <th class="text-lg-right">Increase 2 days Before</th>
+	        <th class="text-lg-right">Increase 3 days Before</th>
+	        <th class="text-lg-right">Increase 4 days Before</th>
+	        <th class="text-lg-right">Increase 5 days Before</th>
+	        <th class="text-lg-right">Increase 6 days Before</th>
+	        <th class="text-lg-right">lastDate</th>
+	      </tr>
+	      <tr th:each="locationStat : ${wilocationStats}">
+	        <td class="text-info" th:text="${locationStat.country}"></td>
+	        <td class="text-primary" th:text="${locationStat.state}"></td>
+	        <td class="text-primary" th:text="${locationStat.combinedKey}"></td>	        
+	        <td class="text-danger text-lg-right" th:text="${locationStat.latestTotalCases}"></td>
+	     <!--    <td class="text-lg-right" th:text="${locationStat.totalCases1daybefore}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.totalCases2daybefore}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.totalCases3daybefore}"></td> -->
+	        <td class="text-danger text-lg-right" th:text="${locationStat.totalDeathCase}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diff}"></td>
+	         <td class="text-lg-right" th:text="${locationStat.diffLast2}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast3}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast4}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast5}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast6}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast7}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.lastDate}"></td>
+	      </tr>
+	    </table>
+	    
+ 
+	    <table class="table bg-warning">
+	      <tr>
+	        <th>Country</th>
+	        <th>State</th>
+	        <th class="text-lg-right">Total Cases</th>
+	       <!--  <th class="text-lg-right">Total Yesterday</th>
+	        <th class="text-lg-right">Total 2 days Before</th>
+	        <th class="text-lg-right">Total 3 days Before</th>
+	        <th class="text-lg-right">Total 4 days Before</th>
+	        <th class="text-lg-right">Total 5 days Before</th>
+	        <th class="text-lg-right">Total 6 days Before</th>
+	        <th class="text-lg-right">Total 7 days Before</th>-->
+	        <th class="text-lg-right">Increase Today</th>
+	        <th class="text-lg-right">Increase Yesterday</th>
+	        <th class="text-lg-right">Increase 2 Days Before</th>
+	        <th class="text-lg-right">Increase 3 Days Before</th>
+	        <th class="text-lg-right">Increase 4 Days Before</th>
+	        <th class="text-lg-right">Increase 5 Days Before</th>
+	        <th class="text-lg-right">Increase 6 Days Before</th>
+	        <th class="text-lg-right">lastDate</th>
+	      </tr>
+	      <tr th:each="locationStat : ${locationStats}">
+	        <td class="text-info" th:text="${locationStat.country}"></td>
+	        <td class="text-primary" th:text="${locationStat.state}"></td>
+	        <td class="text-danger text-lg-right" th:text="${locationStat.latestTotalCases}"></td>
+	        <!-- <td class="text-lg-right" th:text="${locationStat.totalCases1daybefore}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.totalCases2daybefore}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.totalCases3daybefore}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.totalCases4daybefore}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.totalCases5daybefore}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.totalCases6daybefore}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.totalCases7daybefore}"></td> -->
+	        <td class="text-lg-right" th:text="${locationStat.diff}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast2}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast3}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast4}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast5}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast6}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast7}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.lastDate}"></td>
+	      </tr>
+	    </table>
+	    <br/>
+	     <p>US confirmed case today</p>
+	    <table class="table sm-grey bg-info text-white">
+	      <tr>
+	        <th >Country</th>
+	        <th>State</th>
+	        <th>Key</th>
+	        <th class="text-lg-right">Total Cases</th>
+	       <!--  <th class="text-lg-right">Total 1 day Before</th>
+	        <th class="text-lg-right">Total 2 day Before</th>
+	        <th class="text-lg-right">Total 3 day Before</th> -->
+	        <th class="text-lg-right">Total Death</th>
+	        <th class="text-lg-right">Increase Today</th>
+	        <th class="text-lg-right">Increase Day Before</th>
+	        <th class="text-lg-right">Increase 2 days Before</th>
+	        <th class="text-lg-right">Increase 3 days Before</th>
+	        <th class="text-lg-right">Increase 4 days Before</th>
+	        <th class="text-lg-right">Increase 5 days Before</th>
+	        <th class="text-lg-right">Increase 6 days Before</th>
+
+	        <th class="text-lg-right">lastDate</th>
+	      </tr>
+	      
+	   <!--   <tr th:each="locationStat : ${uslocationStats}">    -->
+	      <tr th:each="locationStat : ${usStatelocationStats}">
+	        <td  th:text="${locationStat.country}"></td>
+	        <td class="text-white" th:text="${locationStat.state}"></td>
+	        <td class="text-primary" th:text="${locationStat.combinedKey}"></td>	        
+	        <td class="text-warning text-lg-right" th:text="${locationStat.latestTotalCases}"></td>
+	     <!--    <td class="text-lg-right" th:text="${locationStat.totalCases1daybefore}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.totalCases2daybefore}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.totalCases3daybefore}"></td>  -->
+	        <td class="text-danger text-lg-right" th:text="${locationStat.totalDeathCase}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diff}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast2}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast3}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast3}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast4}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast5}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.diffLast7}"></td>
+	        <td class="text-lg-right" th:text="${locationStat.lastDate}"></td>
+	      </tr>
+	    </table>
+    </div>
+  
+  </body>
+
+</html>
