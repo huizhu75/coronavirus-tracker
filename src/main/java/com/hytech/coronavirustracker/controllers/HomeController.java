@@ -1,4 +1,4 @@
-package io.helen.coronavirusttacker.controllers;
+package com.hytech.coronavirustracker.controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import io.helen.coronavirusttacker.models.LocationStats;
-import io.helen.coronavirusttacker.service.CoronaVirusDataService;
+import com.hytech.coronavirustracker.models.LocationStats;
+import com.hytech.coronavirustracker.service.CoronaVirusDataService;
 
 @Controller
 public class HomeController {

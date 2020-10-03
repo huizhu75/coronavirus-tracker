@@ -1,4 +1,4 @@
-package io.helen.coronavirusttacker.service;
+package com.hytech.coronavirustracker.service;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -9,7 +9,6 @@ import java.net.http.HttpResponse;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +20,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import io.helen.coronavirusttacker.models.LocationStats;
+import com.hytech.coronavirustracker.models.LocationStats;
 
 @Service
 public class CoronaVirusDataService {

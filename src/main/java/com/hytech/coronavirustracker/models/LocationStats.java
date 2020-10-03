@@ -1,4 +1,4 @@
-package io.helen.coronavirusttacker.models;
+package com.hytech.coronavirustracker.models;
 
 public class LocationStats {
 	private String state;

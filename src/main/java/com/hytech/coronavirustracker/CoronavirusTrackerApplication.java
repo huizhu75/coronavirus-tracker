@@ -1,4 +1,4 @@
-package io.helen.coronavirusttacker;
+package com.hytech.coronavirustracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
